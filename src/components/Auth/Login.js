@@ -1,6 +1,12 @@
-// src/components/Login.js
 import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Box } from '@mui/material';
+import { Helmet } from 'react-helmet';
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box 
+} from '@mui/material';
 import api from '../../services/api';
 
 const Login = () => {
@@ -18,6 +24,12 @@ const Login = () => {
   };
 
   return (
+    <>
+      {/* Page (document) title */}
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+    
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -66,6 +78,7 @@ const Login = () => {
         </Box>
       </Box>
     </Container>
+    </>
   );
 };
 

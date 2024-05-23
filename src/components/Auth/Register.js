@@ -1,6 +1,15 @@
 // src/components/Register.js
 import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Box, InputLabel, Input } from '@mui/material';
+import { Helmet } from 'react-helmet';
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+  InputLabel,
+  Input
+} from '@mui/material';
 import api from '../../services/api';
 
 const Register = () => {
@@ -35,7 +44,13 @@ const Register = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <>
+      {/* Page (document) title */}
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
+
+      <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
@@ -117,6 +132,7 @@ const Register = () => {
         </Box>
       </Box>
     </Container>
+    </>
   );
 };
 
