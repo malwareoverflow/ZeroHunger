@@ -55,3 +55,8 @@ div.p-dialog-title {
 form textarea {
   resize: none;
 }
+
+.spn-error {
+  color: red;
+  font-weight: 600;
+}

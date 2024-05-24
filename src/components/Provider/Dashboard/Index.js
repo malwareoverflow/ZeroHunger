@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Communities from '../Communities/Index';
 import Requests from '../Requests/Index';
@@ -16,6 +16,11 @@ function ProviderDashboard() {
         setShowCommunities(false);
         setShowRequests(true);
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
+    });
 
     return (
         <div>

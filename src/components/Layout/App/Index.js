@@ -1,5 +1,5 @@
 // src/components/Layout.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar, Box, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemText, Toolbar, Typography, Menu, MenuItem
 } from '@mui/material';
@@ -13,6 +13,7 @@ const drawerWidth = 240;
 const AppLayout  = ({ children }) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [username, setUsername] = useState('');
   
     const handleDrawerToggle = () => {
       setMobileOpen(!mobileOpen);
@@ -25,6 +26,11 @@ const AppLayout  = ({ children }) => {
     const handleMenuClose = () => {
       setAnchorEl(null);
     };
+
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setUsername(user.userName);
+    });
   
     return (
       <Box sx={{ display: 'flex' }}>
@@ -41,7 +47,7 @@ const AppLayout  = ({ children }) => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-              Zero Hunger
+              AWS Zero Hunger
             </Typography>
             <IconButton
               color="inherit"
@@ -51,6 +57,7 @@ const AppLayout  = ({ children }) => {
             >
               <AccountCircleIcon />
             </IconButton>
+            <label className="username">{username}</label>
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}

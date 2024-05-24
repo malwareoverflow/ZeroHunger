@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   TextField,
@@ -10,14 +11,30 @@ import {
 import api from '../../services/api';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.post('/login', { email, password });
-      console.log('Login successful:', response.data);
+      const response = await api.post('Accounts/Login', { email, password });
+
+      if (response.data.status === 'Success') {
+        const user = response.data.data;
+        localStorage.setItem('user', JSON.stringify(user));
+
+        if (user.userType === "Provider") {
+          navigate("/");
+        } else {
+          navigate("/community");
+        }
+      }
+      
+      // Unsuccessful
+      setError(true);
+
     } catch (error) {
       console.error('Error logging in:', error);
     }
@@ -42,6 +59,10 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
+
+        {error
+        && <span className="spn-error">Invalid credentials</span>}
+
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"

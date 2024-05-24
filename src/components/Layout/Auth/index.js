@@ -29,7 +29,7 @@ function AuthLayout({ children }) {
           py: 2,
         }}
       >
-        <Typography variant="h4">Food Waste Reduction</Typography>
+        <Typography variant="h4">AWS Zero Hunger</Typography>
       </Box>
       <Box
         sx={{
